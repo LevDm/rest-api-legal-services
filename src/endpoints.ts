@@ -38,7 +38,6 @@ export const modelsSchemes = {
 // requests
 
 export async function getBD (_: any, reply: FastifyReply) {
-    console.log('BD')
     reply.send(BD)
 }
 
@@ -57,9 +56,9 @@ export async function deleteID (request: FastifyRequest, reply: FastifyReply) {
 
 
 export async function editID (request: FastifyRequest, reply: FastifyReply) {
-    const { params: { id, body } } = request as {params: {id: string, body: Omit<ItemBDType, 'id'>}}
+    const { params: { id }, body } = request as {params: {id: string, }, body: Omit<ItemBDType, 'id'>}
     const index = indexInBD(id, reply)
-    BD[index] = { ...BD[index], ...body }
+    BD[index] = { id: id, ...body }
     reply.send(BD[index])
 }
 

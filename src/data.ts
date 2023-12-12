@@ -58,5 +58,6 @@ export function indexInBD (id: string, reply: FastifyReply) {
 
 export function deleteInBD (id: string, reply: FastifyReply) {
     const index = indexInBD(id, reply)
-    return BD.splice(index, 1)
+    const result = BD.splice(index, 1)
+    return result[0]
 }
